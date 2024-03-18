@@ -3,7 +3,7 @@ from tkinter import messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from tkinter import ttk
-from matplotlib_learn import spin_graph_info
+from matplotlib_learn import spin_graph_info, min_graph_info, fenu_graph_info, corri_graph_info
 
 window = tk.Tk()
 window.title("Hello world")
@@ -17,7 +17,7 @@ font_style = ("Arial", 20)
 def spinach_window():
     spin_window = tk.Toplevel()
     spin_window.title("Spinach Data and Visualization")
-    spin_window.geometry("700x700")
+    spin_window.geometry("400x400")
     spin_window.state("zoomed")
 
     upper_frame = tk.Frame(spin_window)
@@ -28,8 +28,72 @@ def spinach_window():
 
     canvas1 = FigureCanvasTkAgg(spin_graph_info.fig1, upper_frame)
     canvas1.draw()
-    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True)  
-    
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True) 
+
+    lower_frame = tk.Frame(spin_window)
+    lower_frame.pack(fill = "both", expand = True)
+    tk.Label(lower_frame, text = "Exhaust Fan Mode", font=font_style, bg="red").grid(row = 1, column =1)
+
+def min_window():
+    mint_window = tk.Toplevel()
+    mint_window.title("Mint Data and Visualization")
+    mint_window.geometry("400x400")
+    mint_window.state("zoomed")
+
+    upper_frame = tk.Frame(mint_window)
+    upper_frame.pack(fill = "both", expand = True)
+    canvas1 = FigureCanvasTkAgg(spin_graph_info.fig, upper_frame)
+    canvas1.draw()
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True)   
+
+    canvas1 = FigureCanvasTkAgg(min_graph_info.fig1, upper_frame)
+    canvas1.draw()
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True) 
+
+    lower_frame = tk.Frame(mint_window)
+    lower_frame.pack(fill = "both", expand = True)
+    tk.Label(lower_frame, text = "Exhaust Fan Mode", font=font_style, bg="red").grid(row = 1, column =1)
+
+def fenugreek_window():
+    Fenu_window = tk.Toplevel()
+    Fenu_window.title("Fenugreek Data and Visualization")
+    Fenu_window.geometry("400x400")
+    Fenu_window.state("zoomed")
+
+    upper_frame = tk.Frame(Fenu_window)
+    upper_frame.pack(fill = "both", expand = True)
+    canvas1 = FigureCanvasTkAgg(spin_graph_info.fig, upper_frame)
+    canvas1.draw()
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True)   
+
+    canvas1 = FigureCanvasTkAgg(fenu_graph_info.fig1, upper_frame)
+    canvas1.draw()
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True) 
+
+    lower_frame = tk.Frame(Fenu_window)
+    lower_frame.pack(fill = "both", expand = True)
+    tk.Label(lower_frame, text = "Exhaust Fan Mode", font=font_style, bg="red").grid(row = 1, column =1)
+
+def corriander_window():
+    corri_window = tk.Toplevel()
+    corri_window.title("Corriander Data and Visualization")
+    corri_window.geometry("400x400")
+    corri_window.state("zoomed")
+
+    upper_frame = tk.Frame(corri_window)
+    upper_frame.pack(fill = "both", expand = True)
+    canvas1 = FigureCanvasTkAgg(spin_graph_info.fig, upper_frame)
+    canvas1.draw()
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True)   
+
+    canvas1 = FigureCanvasTkAgg(corri_graph_info.fig1, upper_frame)
+    canvas1.draw()
+    canvas1.get_tk_widget().pack(side="left", fill="both", expand=True) 
+
+    lower_frame = tk.Frame(corri_window)
+    lower_frame.pack(fill = "both", expand = True)
+    tk.Label(lower_frame, text = "Exhaust Fan Mode", font=font_style, bg="red").grid(row = 1, column =1)
+
 
 def Veg_Selection(event):
     data_text = f"{clicked.get()} data processing..."
@@ -40,10 +104,13 @@ def Veg_Selection(event):
         spinach_window()
     elif clicked.get() == "Mint":
         tk.Label(window, text = data_text, bg = "grey", font = font_style).pack()
+        min_window()
     elif clicked.get() == "Corriander":
         tk.Label(window, text = data_text, bg = "grey", font = font_style).pack()
+        corriander_window()
     elif clicked.get() == "Fenugreek":
         tk.Label(window, text = data_text, bg = "grey", font = font_style).pack()
+        fenugreek_window()
     messagebox.showinfo("about", msg_text)
 
 
