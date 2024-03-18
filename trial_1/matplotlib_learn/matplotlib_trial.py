@@ -1,28 +1,24 @@
-import random
-from itertools import count
-import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
+from matplotlib import style
 
+style.use("fivethirtyeight")
 
-plt.style.use("fivethirtyeight")
-
-x_vals = []
-y_vals = []
-
-index = count()
-
+fig = plt.figure()
+ax1 = fig.add_subplot(1, 1, 1)
 def animate(i):
-    x_vals.append(next(index))
-    y_vals.append(random.randint(0, 5))
-    plt.plot(x_vals, y_vals)
-ani = FuncAnimation(plt.gcf(), animate, interval=100)
+    graph_data = open("example.txt", "r"). read()
+    lines = graph_data.split("\n")
+    xs = []
+    ys = []
 
-
-
-
-def show_plot():
-    ani = FuncAnimation(plt.gcf(), animate, interval=100)
-    plt.tight_layout()
+    for line  in lines:
+        if len(line)>1:
+            x, y = line.split(",")
+            xs.append(x)
+            ys.append(y)
+    ax1.clear()
+    ax1.plot(xs, ys)
+    
+    ani = animation(fig, animate, interval=1000)
     plt.show()
-
